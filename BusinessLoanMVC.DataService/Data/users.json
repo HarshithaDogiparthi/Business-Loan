@@ -1,0 +1,16 @@
+ [
+    {
+      "Username": "mohana",
+      "Email": "mohana@gmail.com",
+      "Password": "Mona123",
+      "MobileNumber": "5864855455",
+      "UserRole": "Admin"
+    },
+    {
+      "Username": "bhumika",
+      "Email": "bhumika@gmail.com",
+      "Password": "Bhumi123",
+      "MobileNumber": "(916) 543-2301",
+      "UserRole": "User"
+    }
+  ]

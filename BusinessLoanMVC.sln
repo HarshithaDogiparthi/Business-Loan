@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLoanMVC.UI", "BusinessLoanMVC.UI\BusinessLoanMVC.UI.csproj", "{F996DDD5-F003-436A-A6E4-6515A0A9F232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLoanMVC.DataService", "BusinessLoanMVC.DataService\BusinessLoanMVC.DataService.csproj", "{232D80B9-BE84-4674-8E73-04A9A0656F08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F996DDD5-F003-436A-A6E4-6515A0A9F232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F996DDD5-F003-436A-A6E4-6515A0A9F232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F996DDD5-F003-436A-A6E4-6515A0A9F232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F996DDD5-F003-436A-A6E4-6515A0A9F232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232D80B9-BE84-4674-8E73-04A9A0656F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232D80B9-BE84-4674-8E73-04A9A0656F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232D80B9-BE84-4674-8E73-04A9A0656F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232D80B9-BE84-4674-8E73-04A9A0656F08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCC4A8F9-7E14-4ADF-BFD0-D4CB06A08EED}
+	EndGlobalSection
+EndGlobal
