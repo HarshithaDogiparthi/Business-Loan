@@ -15,7 +15,13 @@ namespace BusinessLoanMVC.DataService
         [Index(IsUnique =true),StringLength(50)]
         public string Email { get; set; }
         public string Password { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
+        public string AadhaarNumber { get; set; }
+        public string PanNumber { get; set; }
+        public string Salary { get; set; }
         public string MobileNumber { get; set; }
         public string UserRole { get; set; }
+        public ICollection<Loan> Loans { get; set; }
     }
 }

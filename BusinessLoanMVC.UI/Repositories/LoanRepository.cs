@@ -1,6 +1,7 @@
 ﻿using BusinessLoanMVC.DataService;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -13,31 +14,36 @@ namespace BusinessLoanMVC.UI.Repositories
         {
             context = new BusinessLoanContext();
         }
-        public void AddLoan(LoanApplicant loan)
+        public void AddLoan(Loan loan)
         {
-            context.LoanApplicants.Add(loan);
+            context.Loans.Add(loan);
             context.SaveChanges();
         }
-        public void EditLoan(LoanApplicant loan)
+        public void EditLoan(Loan loan)
         {
-            context.Entry<LoanApplicant>(loan).State = System.Data.Entity.EntityState.Modified;
+            context.Entry<Loan>(loan).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
-        public void DeleteLoan(String loanId)
+        public void DeleteLoan(Guid loanId)
         {
-            LoanApplicant loan = context.LoanApplicants.Find(loanId);
-            context.LoanApplicants.Remove(loan);
+            Loan loan = context.Loans.Find(loanId);
+            context.Loans.Remove(loan);
             context.SaveChanges();
 
         }
-        public LoanApplicant GetLoanById(string loanId)
+        public Loan GetLoanById(Guid loanId)
         {
-            LoanApplicant loan = context.LoanApplicants.Find(loanId);
+            Loan loan = context.Loans.Find(loanId);
             return loan;
         }
-        public IEnumerable<LoanApplicant> GetAllLoans()
+       public IEnumerable<Loan> GetLoanByUser(String username)
         {
-            return context.LoanApplicants.ToList();
+           return  context.Loans.Where(loan => loan.Username == username);
+            
+        }
+        public IEnumerable<Loan> GetAllLoans()
+        {
+            return context.Loans.ToList();
         }
     }
 }

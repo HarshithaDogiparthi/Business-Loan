@@ -10,15 +10,16 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            @Html.ActionLink("BusinessLoan", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("BusinessLoan", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    @Html.ActionLink("Home", "Index", "Home", htmlAttributes: new { @class = "nav-link active" })
-                    @Html.ActionLink("About", "About", "Home", htmlAttributes: new { @class = "nav-link " })
-                    @Html.ActionLink("Contact", "Contact", "Home", htmlAttributes: new { @class = "nav-link " })
+                    @Html.ActionLink("Apply Loan", "Index", "Loan", htmlAttributes: new { @class = "nav-link active" })
+                    @Html.ActionLink("Loan Status", "About", "Loan", htmlAttributes: new { @class = "nav-link " })
+                    @Html.ActionLink("Repayment", "Contact", "Loan", htmlAttributes: new { @class = "nav-link " })
+                    @Html.ActionLink("Profile", "Contact", "User", htmlAttributes: new { @class = "nav-link " })
                 </div>
             </div>
         </div>

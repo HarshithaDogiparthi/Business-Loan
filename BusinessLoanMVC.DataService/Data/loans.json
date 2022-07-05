@@ -1,0 +1,18 @@
+[
+  {
+    "LoanId": "07fdbcda-c409-4ec4-915d-eec56e16c429",
+    "LoanAmountRequired": 50000,
+    "LoanRepaymentMonths": 24,
+    "DocumentId": "96a145cd-3ee6-4a98-a807-21713839f9a0",
+    "Username": "Mohana"
+
+  },
+  {
+
+    "LoanId": "c434c016-829d-419f-aceb-d0d4b0a40c60",
+    "LoanAmountRequired": 100000,
+    "LoanRepaymentMonths": 24,
+    "DocumentId": "c4346e6d-995c-4530-be72-dea1833a805b",
+      "Username": "Bhumika"
+  }
+]

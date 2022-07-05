@@ -12,7 +12,7 @@ namespace BusinessLoanMVC.DataService
     {
         public BusinessLoanContext _context;
 
-        private string BasePath = "C:/Users/mohan/source/repos/BusinessLoanMVC/BusinessLoanMVC.DataService/Data/";
+        private string BasePath = "C:/Users/mohan/OneDrive/Documents/GitHub/BusinessLoanMVC/BusinessLoanMVC.DataService/Data/";
         public Seed(BusinessLoanContext context)
         {
             _context = context;
@@ -20,6 +20,9 @@ namespace BusinessLoanMVC.DataService
             if (CreateInitDb())
             {
                 SeedUsers();
+                SeedDocuments();
+                SeedLoans();
+                
             }
         }
         public bool CreateInitDb()
@@ -40,7 +43,34 @@ namespace BusinessLoanMVC.DataService
             }
             _context.SaveChanges();
 
-            Console.WriteLine("Users Seeding Done");
+        }
+        public void SeedLoans()
+        {
+            var path = $"{BasePath}loans.json";
+            var Data = System.IO.File.ReadAllText(path);
+            var JsonData = JsonSerializer.Deserialize<List<Loan>>(Data);
+
+            foreach (var x in JsonData)
+            {
+                Console.WriteLine(x);
+                _context.Loans.Add(x);
+            }
+            _context.SaveChanges();
+
+        }
+        public void SeedDocuments()
+        {
+            var path = $"{BasePath}document.json";
+            var Data = System.IO.File.ReadAllText(path);
+            var JsonData = JsonSerializer.Deserialize<List<Document>>(Data);
+
+            foreach (var x in JsonData)
+            {
+                Console.WriteLine(x);
+                _context.Documents.Add(x);
+            }
+            _context.SaveChanges();
+
         }
 
     }

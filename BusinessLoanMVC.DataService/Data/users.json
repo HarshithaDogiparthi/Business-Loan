@@ -1,16 +1,26 @@
  [
-    {
-      "Username": "mohana",
-      "Email": "mohana@gmail.com",
-      "Password": "Mona123",
-      "MobileNumber": "5864855455",
-      "UserRole": "Admin"
-    },
-    {
-      "Username": "bhumika",
-      "Email": "bhumika@gmail.com",
-      "Password": "Bhumi123",
-      "MobileNumber": "(916) 543-2301",
-      "UserRole": "User"
-    }
+  {
+    "Username": "Mohana",
+    "Email": "mohana@gmail.com",
+    "Password": "Mona123",
+    "FullName": "Mona",
+    "Address": "Guntur",
+    "AadhaarNumber": "2345678765476",
+    "PanNumber": "8765GF3223",
+    "Salary": "40000",
+    "MobileNumber": "5864855455",
+    "UserRole": "Admin"
+  },
+  {
+    "Username": "Bhumika",
+    "Email": "bhumika@gmail.com",
+    "Password": "Bhumi123",
+    "FullName": "Bhumika",
+    "Address": "Guntur",
+    "AadhaarNumber": "9675678385476",
+    "PanNumber": "6245GF3223",
+    "Salary": "40000",
+    "MobileNumber": "(916) 543-2301",
+    "UserRole": "User"
+  }
   ]

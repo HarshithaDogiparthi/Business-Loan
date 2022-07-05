@@ -88,13 +88,15 @@
   <ItemGroup>
     <Compile Include="BusinessLoanContext.cs" />
     <Compile Include="Document.cs" />
-    <Compile Include="LoanApplicant.cs" />
+    <Compile Include="Loan.cs" />
     <Compile Include="Seed.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Data\document.json" />
+    <None Include="Data\loans.json" />
     <None Include="Data\users.json" />
     <None Include="packages.config" />
   </ItemGroup>

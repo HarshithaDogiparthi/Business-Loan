@@ -11,7 +11,6 @@ namespace BusinessLoanMVC.DataService
     {
         [Key]
         public Guid DocumentId { get; set; }
-        public string DocumentType { get; set; }
         public byte[] DocumentUpload { get; set; }
 
     }

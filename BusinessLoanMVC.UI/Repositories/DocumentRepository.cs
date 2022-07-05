@@ -23,13 +23,13 @@ namespace BusinessLoanMVC.UI.Repositories
             context.Entry<Document>(doc).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
-        public void DeleteDocument(string docId)
+        public void DeleteDocument(Guid docId)
         {
             Document document = context.Documents.Find(docId);
             context.Documents.Remove(document);
             context.SaveChanges();
         }
-        public Document GetDocumentById(string docId)
+        public Document GetDocumentById(Guid docId)
         {
             Document document = context.Documents.Find(docId);
             return document;

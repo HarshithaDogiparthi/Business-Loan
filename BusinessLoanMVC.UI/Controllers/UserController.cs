@@ -54,5 +54,29 @@ namespace BusinessLoanMVC.UI.Controllers
             }
             return RedirectToAction("Login");
         }
+        public ActionResult ViewAllUsers()
+        {
+            var x = userRepository.GetAllUsers();
+            return View(x);
+        }
+        [HttpGet]
+        public ActionResult EditUser(string id)
+        {
+            var x = userRepository.GetUserById(id);
+            return View(x);
+        }
+
+        [HttpPost]
+        public ActionResult EditUser(User user)
+        {
+            userRepository.EditUser(user);
+            return RedirectToAction("ViewAllUsers");
+        }
+
+        public ActionResult DeleteUser(string id)
+        {
+            userRepository.DeleteUser(id);
+            return RedirectToAction("ViewAllUsers");
+        }
     }
 }

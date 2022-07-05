@@ -12,7 +12,7 @@ namespace BusinessLoanMVC.DataService
         {
         }
          public DbSet<User> Users { get; set; }
-         public DbSet<LoanApplicant> LoanApplicants { get; set; }
+         public DbSet<Loan> Loans { get; set; }
          public DbSet<Document> Documents { get; set; }
     }
 
