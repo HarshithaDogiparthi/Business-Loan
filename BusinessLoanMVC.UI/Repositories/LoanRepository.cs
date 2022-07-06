@@ -16,6 +16,8 @@ namespace BusinessLoanMVC.UI.Repositories
         }
         public void AddLoan(Loan loan)
         {
+            loan.LoanIssueDate = DateTime.Now.ToString("dd/MM/yyyy");
+            loan.LoanStatus = "Pending";
             context.Loans.Add(loan);
             context.SaveChanges();
         }
@@ -45,5 +47,16 @@ namespace BusinessLoanMVC.UI.Repositories
         {
             return context.Loans.ToList();
         }
+        public IEnumerable<Loan> GetApprovedLoansByUser(String username)
+        {
+
+            return context.Loans.Where(loan => (loan.Username==username && loan.LoanStatus == "Approved"));
+        }
+        public IEnumerable<Loan> GetRejectedLoansByUser(String username)
+        {
+            return context.Loans.Where(loan =>(loan.Username==username  && loan.LoanStatus == "Rejected"));
+        }
+        
     }
+
 }

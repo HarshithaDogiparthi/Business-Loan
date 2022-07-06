@@ -7,7 +7,7 @@ namespace BusinessLoanMVC.DataService
 {
     public class BusinessLoanContext : DbContext
     {
-        public static string con = @"Data Source=DESKTOP-B2UVGO5;Initial Catalog=BusinessLoanMVC;Integrated Security=True";
+        public static string con = @"Data Source=DESKTOP-4UR8BQQ;Initial Catalog=BusinessLoanMVC;Integrated Security=True";
         public BusinessLoanContext(): base(con)
         {
         }

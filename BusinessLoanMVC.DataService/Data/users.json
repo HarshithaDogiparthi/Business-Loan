@@ -22,5 +22,17 @@
     "Salary": "40000",
     "MobileNumber": "(916) 543-2301",
     "UserRole": "User"
+  },
+  {
+    "Username": "Harshitha",
+    "Email": "harshitha@gmail.com",
+    "Password": "Harshi123",
+    "FullName": "Harshitha",
+    "Address": "Guntur",
+    "AadhaarNumber": "9675678385476",
+    "PanNumber": "6245GF3223",
+    "Salary": "45000",
+    "MobileNumber": "(916) 543-2308",
+    "UserRole": "User"
   }
   ]

@@ -15,6 +15,8 @@ namespace BusinessLoanMVC.DataService
         public Guid LoanId { get; set; }
         public int LoanAmountRequired { get; set; }
         public int LoanRepaymentMonths { get; set; }
+        public string LoanIssueDate { get; set; } 
+        public string LoanStatus { get; set; }
         [ForeignKey("Document")]
         public Guid DocumentId { get; set; }
         [JsonIgnore]

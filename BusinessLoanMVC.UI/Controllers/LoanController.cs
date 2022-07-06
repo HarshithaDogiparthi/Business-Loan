@@ -22,16 +22,21 @@ namespace BusinessLoanMVC.UI.Controllers
             IEnumerable<Loan> loans = loanRepository.GetAllLoans();
             return View(loans);
         }
+        [HttpGet]
         public ActionResult CreateLoan()
         {
             return View();
         }
-
+        [HttpPost]
         public ActionResult CreateLoan(Loan loan)
         {
             loan.LoanId = Guid.NewGuid();
             loanRepository.AddLoan(loan);
             return RedirectToAction("ViewLoans");
+        }
+        public ActionResult LoanDetails(Loan loan)
+        {
+            return View(loan);
         }
 
     }

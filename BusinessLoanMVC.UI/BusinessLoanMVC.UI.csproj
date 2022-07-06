@@ -181,11 +181,12 @@
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Loan\ViewLoans.cshtml" />
+    <Content Include="Views\User\ViewAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Loan\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLoanMVC.DataService\BusinessLoanMVC.DataService.csproj">
