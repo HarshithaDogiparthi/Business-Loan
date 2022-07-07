@@ -5,75 +5,94 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>ViewLoans</h2>
+<h2 class="m-3">All Applied Loans</h2>
 
 
 <div class="row">
 
     @foreach (var item in Model)
     {
-    <div class="col-md-4">
-        <div class="card text-dark bg-light mb-3" style="max-width: 20rem;">
-            <div class="card-header h5">@Html.DisplayFor(modelItem => item.Username)</div>
+    <div class="col-md-12">
+        <div class="card text-dark mb-3 shadow" style="background-color:lightgray">
             <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <p> Loan Amount</p>
+                <div class="row">
+                    <div class="col-3">
+                        <p class="lead">Applicant Name</p>
+                        <div class="h5">@Html.DisplayFor(modelItem => item.Username)</div>
+                    </div>
+                    <div class="col-3">
+                        <p class="lead"> Loan Amount</p>
                         <p class="card-text"> @Html.DisplayFor(modelItem => item.LoanAmountRequired)</p>
                     </div>
-                    <div>
-                        <p>Due Date</p>
+                    <div class="col-3">
+                        <p class="lead">Due Date</p>
                         <p>@DateTime.Parse(item.LoanIssueDate).AddMonths(item.LoanRepaymentMonths).ToString("dd/MM/yyyy")</p>
                     </div>
-                </div>
-
-                @{ if (item.LoanStatus.Equals("Pending"))
-                    {
-                        <div class="btn btn-success">
-                            <svg style="color: white"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" fill="white"></path>
-                            </svg>
-                            @Html.ActionLink("Approve", "Details", new { id = item.LoanId },
-                                           htmlAttributes: new { @class = "text-decoration-none text-white" })
-                        </div>
-                        <div class="btn btn-danger">
-                            <svg style="color: white" xmlns="http://www.w3.org/2000/svg"
-                                 width="16" height="16"
-                                 viewBox="0 0 20 20">
-                                <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z" fill="white"></path>
-                            </svg>
-                            @Html.ActionLink("Deny", "Details", new { id = item.LoanId },
-                                             htmlAttributes: new { @class = "text-decoration-none text-white" })
-                        </div>
-                    }
-                    else
-                    {
-                        if (item.LoanStatus.Equals("Approved"))
-                        {
-                            <div class="bg-success text-white border p-1 rounded text-center">
-                                @Html.DisplayFor(modelItem => item.LoanStatus)
+                    <div class="col-3">
+                        <div class="d-flex justify-content-between">
+                            <p class="lead">Loan Status</p>
+                            <div>
+                                <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myModal">
+                                    @Ajax.ActionLink("Details", "LoanDetails", "Loan", new { loanId = item.LoanId },
+                                                    new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divLoanDetails", InsertionMode = InsertionMode.Replace },
+                                                    htmlAttributes: new { @class = "" })
+                                </div>
+                                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-center" id="exampleModalLabel">Loan Details</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" >
+                                                <div id="divLoanDetails"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        @{ if (item.LoanStatus.Equals("Pending"))
+                            {
+                                <div class="btn btn-success">
+                                    <svg style="color: white"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" fill="white"></path>
+                                    </svg>
+                                    @Html.ActionLink("Approve", "ApproveLoan","Loan", new { loanId = item.LoanId },
+                                                   htmlAttributes: new { @class = "text-decoration-none text-white" })
+                                </div>
+                                <div class="btn btn-danger">
+                                    <svg style="color: white" xmlns="http://www.w3.org/2000/svg"
+                                         width="16" height="16"
+                                         viewBox="0 0 20 20">
+                                        <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM11.4 10l2.83-2.83-1.41-1.41L10 8.59 7.17 5.76 5.76 7.17 8.59 10l-2.83 2.83 1.41 1.41L10 11.41l2.83 2.83 1.41-1.41L11.41 10z" fill="white"></path>
+                                    </svg>
+                                    @Html.ActionLink("Deny", "RejectLoan","Loan", new { loanId = item.LoanId },
+                                                     htmlAttributes: new { @class = "text-decoration-none text-white" })
+                                </div>
+                            }
+                            else
+                            {
+                                if (item.LoanStatus.Equals("Approved"))
+                                {
+                                    <div class="bg-success text-white border p-1 rounded text-center">
+                                        @Html.DisplayFor(modelItem => item.LoanStatus)
+                                    </div>
+                                }
+                                if (item.LoanStatus.Equals("Rejected"))
+                                {
+                                    <div class="bg-danger text-white border p-1 rounded text-center">
+                                        @Html.DisplayFor(modelItem => item.LoanStatus)
+                                    </div>
+                                }
+                            }
                         }
-                        if (item.LoanStatus.Equals("Rejected"))
-                        {
-                            <div class="bg-danger text-white border p-1 rounded text-center">
-                                @Html.DisplayFor(modelItem => item.LoanStatus)
-                            </div>
-                        }
-
-
-                    }
-                }
-                <div>
-                    @Html.ActionLink("Details", "Details", new { id = item.LoanId })
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+     </div>
     }
 </div>
-
-

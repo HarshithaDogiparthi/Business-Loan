@@ -23,16 +23,16 @@ namespace BusinessLoanMVC.UI.Repositories
             Context.Entry<User>(user).State = System.Data.Entity.EntityState.Modified;
             Context.SaveChanges();
         }
-        public void DeleteUser(String Username)
-        {
-            Context.Users.Remove(Context.Users.Find(Username));
-            Context.SaveChanges();
-        }
         public User GetUserById(String Email)
         {
             User user = Context.Users.Where(u =>  u.Email.Equals(Email)).FirstOrDefault<User>();
             return user;
             
+        }
+
+        public User GetUserByName(String name) {
+            User user = Context.Users.Find(name);
+            return user;
         }
         public IEnumerable<User>GetAllUsers()
         {

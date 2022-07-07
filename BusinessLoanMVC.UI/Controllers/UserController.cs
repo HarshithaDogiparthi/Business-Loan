@@ -60,10 +60,10 @@ namespace BusinessLoanMVC.UI.Controllers
             return View(x);
         }
         [HttpGet]
-        public ActionResult EditUser(string id)
+        public PartialViewResult EditUser(string userName)
         {
-            var x = userRepository.GetUserById(id);
-            return View(x);
+            var x = userRepository.GetUserByName(userName);
+            return PartialView(x);
         }
 
         [HttpPost]
@@ -73,10 +73,6 @@ namespace BusinessLoanMVC.UI.Controllers
             return RedirectToAction("ViewAllUsers");
         }
 
-        public ActionResult DeleteUser(string id)
-        {
-            userRepository.DeleteUser(id);
-            return RedirectToAction("ViewAllUsers");
-        }
+       
     }
 }

@@ -38,10 +38,10 @@ namespace BusinessLoanMVC.UI.Repositories
             Loan loan = context.Loans.Find(loanId);
             return loan;
         }
-       public IEnumerable<Loan> GetLoanByUser(String username)
+        public IEnumerable<Loan> GetLoanByUser(String username)
         {
-           return  context.Loans.Where(loan => loan.Username == username);
-            
+            return context.Loans.Where(loan => loan.Username == username);
+
         }
         public IEnumerable<Loan> GetAllLoans()
         {
@@ -50,11 +50,22 @@ namespace BusinessLoanMVC.UI.Repositories
         public IEnumerable<Loan> GetApprovedLoansByUser(String username)
         {
 
-            return context.Loans.Where(loan => (loan.Username==username && loan.LoanStatus == "Approved"));
+            return context.Loans.Where(loan => (loan.Username == username && loan.LoanStatus == "Approved"));
         }
         public IEnumerable<Loan> GetRejectedLoansByUser(String username)
         {
-            return context.Loans.Where(loan =>(loan.Username==username  && loan.LoanStatus == "Rejected"));
+            return context.Loans.Where(loan => (loan.Username == username && loan.LoanStatus == "Rejected"));
+        }
+
+        public void ApproveLoan(Loan loan) {
+            loan.LoanStatus = "Approved";
+            context.Entry<Loan>(loan).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+        public void RejectLoan(Loan loan) {
+            loan.LoanStatus = "Rejected";
+            context.Entry<Loan>(loan).State = EntityState.Modified;
+            context.SaveChanges();
         }
         
     }

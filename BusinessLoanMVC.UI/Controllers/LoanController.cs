@@ -1,4 +1,5 @@
 ﻿using BusinessLoanMVC.DataService;
+using BusinessLoanMVC.UI.Models;
 using BusinessLoanMVC.UI.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ namespace BusinessLoanMVC.UI.Controllers
     {
         // GET: ApplyLoan
         public LoanRepository loanRepository;
+        public UserRepository userRepository;
+        public DocumentRepository documentRepository;
         public LoanController()
         {
             loanRepository = new LoanRepository();
-
+            userRepository = new UserRepository();
+            documentRepository = new DocumentRepository();
         }
         public ActionResult ViewLoans()
         {
@@ -34,10 +38,25 @@ namespace BusinessLoanMVC.UI.Controllers
             loanRepository.AddLoan(loan);
             return RedirectToAction("ViewLoans");
         }
-        public ActionResult LoanDetails(Loan loan)
-        {
-            return View(loan);
-        }
 
+        public ActionResult ApproveLoan(Guid loanId) {
+            Loan loan = loanRepository.GetLoanById(loanId);
+            loanRepository.ApproveLoan(loan);
+            return RedirectToAction("ViewLoans");
+        }
+        public ActionResult RejectLoan(Guid loanId) {
+            Loan loan = loanRepository.GetLoanById(loanId);
+            loanRepository.RejectLoan(loan);
+            return RedirectToAction("ViewLoans");
+        }
+        public PartialViewResult LoanDetails(Guid loanId) {
+            Loan loan = loanRepository.GetLoanById(loanId);
+            User user = userRepository.GetUserByName(loan.Username);
+            Document doc = documentRepository.GetDocumentById(loan.DocumentId);
+            LoanDetailsDTO obj = new LoanDetailsDTO();
+            obj.user = user;
+            obj.doc = doc;
+            return PartialView(obj);
+        }
     }
 }

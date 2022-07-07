@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>ViewAllUsers</h2>
+<h2 class="text-center m-2">All Loan Applicants</h2>
 
 
 <table class="table">
@@ -70,9 +70,26 @@
             @Html.DisplayFor(modelItem => item.UserRole)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Username }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Username }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Username })
+            <div>
+                <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myModal">
+                    @Ajax.ActionLink("Edit", "EditUser", "User", new { userName = item.Username },
+                                    new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divEditUser", InsertionMode = InsertionMode.Replace },
+                                    htmlAttributes: new { @class = "" })
+                </div>
+                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center"  id="exampleModalLabel">Edit User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="divEditUser"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </td>
     </tr>
 }

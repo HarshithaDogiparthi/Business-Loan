@@ -11,6 +11,9 @@ namespace BusinessLoanMVC.UI
             bundles.Add(new Bundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new Bundle("~/bundles/jqueryajax").Include(
+                      "~/Scripts/jquery.unobtrusive-ajax.js"));
+            
             bundles.Add(new Bundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
