@@ -8,7 +8,8 @@
 <h2>Login</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form" }))
+
 {
     @Html.AntiForgeryToken()
 
@@ -36,7 +37,7 @@
     <br />
     <div class="form-group">
         <div class="col-md-offset-2 me-3 col-md-10">
-            <input type="submit" value="Login" class="btn btn-primary" />
+            <input type="submit" value="Login" class="btn btn-primary" onclick="Login()" />
         </div>
     </div>
     <div>
@@ -47,7 +48,33 @@
 }
 
 
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var status = null;
+        function Login(event)
+        {
+            var data = $("#form").serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/User/Login',
+                data:data,
+                dataType: 'JSON',
+                success: function (data) {
+                    status = data.status;
+                    if (status == 1) {
+                        window.location.href = '@Url.Action("Index", "Admin")';
+                    } else if (status == 2) {
+                        window.location.href = '@Url.Action("Index", "Customer")';
+                    } else if (status == 3) {
+                        window.location.href = '@Url.Action("Login", "User")';
+                        alert("Username or Password not found!!!");
+
+                    }
+                }
+            })
+        }
+    </script>
+
+
 }

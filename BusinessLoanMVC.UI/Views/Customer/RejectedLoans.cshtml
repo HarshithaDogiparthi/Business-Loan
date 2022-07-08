@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BusinessLoanMVC.DataService.Loan>
+
+@foreach (var item in Model)
+{
+    <div class="col-md-12">
+        <div class="card text-dark mb-3 shadow" style="background-color:lightgray">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <p class="lead">Applicant Name</p>
+                        <div class="h5">@Html.DisplayFor(modelItem => item.Username)</div>
+                    </div>
+                    <div class="col-3">
+                        <p class="lead"> Loan Amount</p>
+                        <p class="card-text"> @Html.DisplayFor(modelItem => item.LoanAmountRequired)</p>
+                    </div>
+                    <div class="col-3">
+                        <p class="lead">Due Date</p>
+                        <p>@DateTime.Parse(item.LoanIssueDate).AddMonths(item.LoanRepaymentMonths).ToString("dd/MM/yyyy")</p>
+                    </div>
+                    <div class="col-3">
+                        <div class="d-flex justify-content-between">
+                            <p class="lead">Loan Status</p>
+                            <div>
+                                <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myModal">
+                                    @Ajax.ActionLink("Details", "LoanDetails", "Loan", new { loanId = item.LoanId },
+                                                    new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divLoanDetails", InsertionMode = InsertionMode.Replace },
+                                                    htmlAttributes: new { @class = "" })
+                                </div>
+                                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-center" id="exampleModalLabel">Loan Details</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="divLoanDetails"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @{
+
+                           <div class="bg-danger text-white border p-1 rounded text-center">
+                                @Html.DisplayFor(modelItem => item.LoanStatus)
+                            </div>
+                        
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

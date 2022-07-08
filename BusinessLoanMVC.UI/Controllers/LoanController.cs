@@ -35,8 +35,12 @@ namespace BusinessLoanMVC.UI.Controllers
         public ActionResult CreateLoan(Loan loan)
         {
             loan.LoanId = Guid.NewGuid();
+            loan.DocumentId = Guid.NewGuid();
+            loan.Username = Session["username"].ToString();
+            loan.LoanIssueDate = DateTime.Now.ToString("dd/MM/yyyy");
+            loan.LoanStatus = "Pending";
             loanRepository.AddLoan(loan);
-            return RedirectToAction("ViewLoans");
+            return RedirectToAction("ViewLoans","Customer");
         }
 
         public ActionResult ApproveLoan(Guid loanId) {

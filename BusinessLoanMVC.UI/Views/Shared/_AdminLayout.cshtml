@@ -19,9 +19,12 @@
 
                     @Html.ActionLink("Applied Loans", "ViewLoans", "Loan", "", htmlAttributes: new { @class = "nav-link " })
                     @Html.ActionLink("Manage Users", "ViewAllUsers", "User", "", htmlAttributes: new { @class = "nav-link " })
+
                 </div>
+                <div class="offset-8">  @Html.ActionLink("Logout", "Logout", "User", "", htmlAttributes: new { @class = "nav-link text-white" })</div>
             </div>
         </div>
+
     </nav>
     <div class="container body-content">
         @RenderBody()

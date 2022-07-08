@@ -16,8 +16,7 @@ namespace BusinessLoanMVC.UI.Repositories
         }
         public void AddLoan(Loan loan)
         {
-            loan.LoanIssueDate = DateTime.Now.ToString("dd/MM/yyyy");
-            loan.LoanStatus = "Pending";
+            
             context.Loans.Add(loan);
             context.SaveChanges();
         }

@@ -21,11 +21,21 @@ namespace BusinessLoanMVC.UI.Controllers
         {
             return View();
         }
-       /* public ActionResult ViewLoans()
+       public ActionResult ViewLoans()
         {
-            IEnumerable<Loan> loans = loanRepository.GetLoanByUser(username);
+            IEnumerable<Loan> loans = loanRepository.GetLoanByUser(Session["username"].ToString());
             return View(loans);
             
-        }*/
+        }
+        public PartialViewResult RejectedLoans()
+        {
+            IEnumerable<Loan> loans = loanRepository.GetRejectedLoansByUser(Session["username"].ToString());
+            return PartialView(loans);
+        }
+        public PartialViewResult ApprovedLoans()
+        {
+            IEnumerable<Loan> loans= loanRepository.GetApprovedLoansByUser(Session["username"].ToString());
+            return PartialView(loans);
+        }
     }
 }

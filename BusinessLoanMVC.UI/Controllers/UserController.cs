@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace BusinessLoanMVC.UI.Controllers
 {
@@ -40,19 +41,35 @@ namespace BusinessLoanMVC.UI.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            User usr=userRepository.GetUserById(user.Email);
-            if(user.Password.Equals(usr.Password))
+            User x=userRepository.GetUserById(user.Email);
+            
+            
+            string status = "3";
+            if (x == null) { }
+            else
             {
-                if(usr.UserRole.Equals("Admin"))
+                bool val = x.Email.Equals(user.Email) && x.Password.Equals(user.Password);
+                if (val)
                 {
-                    return RedirectToAction("Index", "Admin");
+                    Session["username"] = x.Username;
+                    Session["role"] = x.UserRole;
+
+                    if (x.UserRole == "Admin") status = "1";
+                   
+
+                    else if (x.UserRole == "User") status = "2";
+                    
                 }
-                else if(usr.UserRole.Equals("User"))
-                {
-                    return RedirectToAction("Index", "Customer");
-                }
+
             }
-            return RedirectToAction("Login");
+            return new JsonResult { Data = new { status = status } };
+            /*return RedirectToAction("Login");*/
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Login", "User");
         }
         public ActionResult ViewAllUsers()
         {

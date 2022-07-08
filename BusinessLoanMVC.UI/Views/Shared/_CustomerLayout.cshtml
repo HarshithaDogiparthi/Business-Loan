@@ -16,11 +16,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    @Html.ActionLink("Apply Loan", "Index", "Loan", htmlAttributes: new { @class = "nav-link active" })
-                    @Html.ActionLink("Loan Status", "About", "Loan", htmlAttributes: new { @class = "nav-link " })
-                    @Html.ActionLink("Repayment", "Contact", "Loan", htmlAttributes: new { @class = "nav-link " })
-                    @Html.ActionLink("Profile", "Contact", "User", htmlAttributes: new { @class = "nav-link " })
+
+                    @Html.ActionLink("Loans", "ViewLoans", "Customer", "", htmlAttributes: new { @class = "nav-link active" })
+                   
+                    @Html.ActionLink("Repayment", "Contact", "Customer", "", htmlAttributes: new { @class = "nav-link " })
+                    @Html.ActionLink("Profile", "Contact", "User", "", htmlAttributes: new { @class = "nav-link " })
+
                 </div>
+                <div class="offset-8">  @Html.ActionLink("Logout", "Logout", "User", "", htmlAttributes: new { @class = "nav-link text-white" })</div>
             </div>
         </div>
     </nav>
