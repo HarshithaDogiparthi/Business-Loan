@@ -15,11 +15,13 @@ namespace BusinessLoanMVC.UI.Controllers
         public LoanRepository loanRepository;
         public UserRepository userRepository;
         public DocumentRepository documentRepository;
+        public DocumentController documentController;
         public LoanController()
         {
             loanRepository = new LoanRepository();
             userRepository = new UserRepository();
             documentRepository = new DocumentRepository();
+            documentController = new DocumentController();
         }
         public ActionResult ViewLoans()
         {
@@ -32,10 +34,10 @@ namespace BusinessLoanMVC.UI.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateLoan(Loan loan)
+        public ActionResult CreateLoan(Loan loan, HttpPostedFileBase upload)
         {
             loan.LoanId = Guid.NewGuid();
-            loan.DocumentId = Guid.NewGuid();
+            loan.DocumentId = documentController.UploadDocument(new Document(), upload);
             loan.Username = Session["username"].ToString();
             loan.LoanIssueDate = DateTime.Now.ToString("dd/MM/yyyy");
             loan.LoanStatus = "Pending";

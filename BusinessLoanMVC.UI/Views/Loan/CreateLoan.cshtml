@@ -7,11 +7,11 @@
 
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
-    @Html.AntiForgeryToken()
-   
-    <div class="form-horizontal">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
         
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -31,8 +31,9 @@
         </div>
 
         <div>
-            Upload Document
-            @Html.ActionLink("Upload Document","UploadDocument","Document","",htmlAttributes: new { @class = "btn btn-success" })
+            Upload Document <br />
+            @* @Html.ActionLink("Upload Document","UploadDocument","Document","",htmlAttributes: new { @class = "btn btn-success" })*@
+            <input type="file" id="upload" name="upload" />
         </div>
        
 
@@ -47,6 +48,7 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+@section scripts
+{
+}

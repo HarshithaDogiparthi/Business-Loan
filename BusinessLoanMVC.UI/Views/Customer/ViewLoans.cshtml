@@ -10,125 +10,141 @@
 
 
 
-    
-    <div>
-        <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myLoan">
-            @Ajax.ActionLink("Apply Loan", "CreateLoan", "Loan", "",
-                                                          new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CreateLoan", InsertionMode = InsertionMode.Replace },
-                                                          htmlAttributes: new { @class = "btn btn-primary" })
 
-        </div>
-        <div class="modal fade" id="myLoan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-center" id="exampleModalLabel">Create Loan</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="CreateLoan"></div>
-                    </div>
+<div>
+    <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myLoan">
+        @Ajax.ActionLink("Apply Loan", "CreateLoan", "Loan", "",
+                                                      new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "CreateLoan", InsertionMode = InsertionMode.Replace },
+                                                      htmlAttributes: new { @class = "btn btn-primary" })
+
+    </div>
+    <div class="modal fade" id="myLoan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Create Loan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="CreateLoan"></div>
                 </div>
             </div>
         </div>
-
     </div>
-    <ul class="nav nav-pills mb-3 offset-9" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-All" type="button" role="tab" aria-controls="pills-home" aria-selected="true">All</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-Approved" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
-                @Ajax.ActionLink("Approved", "ApprovedLoans", "Customer", "",
-                                                                new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "pills-Approved", InsertionMode = InsertionMode.Replace },
-                                                                htmlAttributes: new { @class = "text-white text-decoration-none" })
 
-            </button>
+</div>
+<ul class="nav nav-pills mb-3 offset-9" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-All" type="button" role="tab" aria-controls="pills-home" aria-selected="true">All</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-approve-tab" data-bs-toggle="pill" data-bs-target="#pills-Approved" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+            @Ajax.ActionLink("Approved", "ApprovedLoans", "Customer", "",
+                                                            new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "pills-Approved", InsertionMode = InsertionMode.Replace },
+                                                            htmlAttributes: new { @class = " text-decoration-none", @id = "Approvedbtn" })
 
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-Rejected" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
-                @Ajax.ActionLink("Rejected", "RejectedLoans", "Customer", "",
-                                                               new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "pills-Rejected", InsertionMode = InsertionMode.Replace },
-                                                               htmlAttributes: new { @class = "text-white text-decoration-none" })
+        </button>
 
-            </button>
-        </li>
-    </ul>
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-All" role="tabpanel" aria-labelledby="pills-home-tab">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-12">
-                    <div class="card text-dark mb-3 shadow" style="background-color:lightgray">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-3">
-                                    <p class="lead">Applicant Name</p>
-                                    <div class="h5">@Html.DisplayFor(modelItem => item.Username)</div>
-                                </div>
-                                <div class="col-3">
-                                    <p class="lead"> Loan Amount</p>
-                                    <p class="card-text"> @Html.DisplayFor(modelItem => item.LoanAmountRequired)</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="lead">Due Date</p>
-                                    <p>@DateTime.Parse(item.LoanIssueDate).AddMonths(item.LoanRepaymentMonths).ToString("dd/MM/yyyy")</p>
-                                </div>
-                                <div class="col-3">
-                                    <div class="d-flex justify-content-between">
-                                        <p class="lead">Loan Status</p>
-                                        <div>
-                                            <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myModal">
-                                                @Ajax.ActionLink("Details", "LoanDetails", "Loan", new { loanId = item.LoanId },
-                                                                new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divLoanDetails", InsertionMode = InsertionMode.Replace },
-                                                                htmlAttributes: new { @class = "" })
-                                            </div>
-                                            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title text-center" id="exampleModalLabel">Loan Details</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div id="divLoanDetails"></div>
-                                                        </div>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-reject-tab" data-bs-toggle="pill" data-bs-target="#pills-Rejected" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+            @Ajax.ActionLink("Rejected", "RejectedLoans", "Customer", "",
+                                                           new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "pills-Rejected", InsertionMode = InsertionMode.Replace },
+                                                           htmlAttributes: new { @class = " text-decoration-none", @id = "Rejectedbtn" })
+
+        </button>
+    </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-All" role="tabpanel" aria-labelledby="pills-home-tab">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-12">
+                <div class="card text-dark mb-3 shadow" style="background-color:lightgray">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="lead">Applicant Name</p>
+                                <div class="h5">@Html.DisplayFor(modelItem => item.Username)</div>
+                            </div>
+                            <div class="col-3">
+                                <p class="lead"> Loan Amount</p>
+                                <p class="card-text"> @Html.DisplayFor(modelItem => item.LoanAmountRequired)</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="lead">Due Date</p>
+                                <p>@DateTime.Parse(item.LoanIssueDate).AddMonths(item.LoanRepaymentMonths).ToString("dd/MM/yyyy")</p>
+                            </div>
+                            <div class="col-3">
+                                <div class="d-flex justify-content-between">
+                                    <p class="lead">Loan Status</p>
+                                    <div>
+                                        <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myModal">
+                                            @Ajax.ActionLink("Details", "LoanDetails", "Loan", new { loanId = item.LoanId },
+                                                            new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divLoanDetails", InsertionMode = InsertionMode.Replace },
+                                                            htmlAttributes: new { @class = "" })
+                                        </div>
+                                        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-center" id="exampleModalLabel">Loan Details</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div id="divLoanDetails"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    @{
-                                        if (item.LoanStatus.Equals("Approved"))
-                                        {
-                                            <div class="bg-success text-white border p-1 rounded text-center">
-                                                @Html.DisplayFor(modelItem => item.LoanStatus)
-                                            </div>
-                                        }
-                                        if (item.LoanStatus.Equals("Rejected"))
-                                        {
-                                            <div class="bg-danger text-white border p-1 rounded text-center">
-                                                @Html.DisplayFor(modelItem => item.LoanStatus)
-                                            </div>
-                                        }
-                                    }
-
                                 </div>
+
+                                @{
+                                    if (item.LoanStatus.Equals("Approved"))
+                                    {
+                                        <div class="bg-success text-white border p-1 rounded text-center">
+                                            @Html.DisplayFor(modelItem => item.LoanStatus)
+                                        </div>
+                                    }
+                                    if (item.LoanStatus.Equals("Rejected"))
+                                    {
+                                        <div class="bg-danger text-white border p-1 rounded text-center">
+                                            @Html.DisplayFor(modelItem => item.LoanStatus)
+                                        </div>
+                                    }
+                                    if (item.LoanStatus.Equals("Pending"))
+                                    {
+                                        <div class="bg-secondary text-white border p-1 rounded text-center">
+                                            @Html.DisplayFor(modelItem => item.LoanStatus)
+                                        </div>
+                                    }
+                                }
+
                             </div>
                         </div>
                     </div>
                 </div>
-            }
+            </div>
+        }
 
 
-        </div>
-        <div class="tab-pane fade" id="pills-Approved" role="tabpanel" aria-labelledby="pills-profile-tab">
-
-        </div>
-        <div class="tab-pane fade" id="pills-Rejected" role="tabpanel" aria-labelledby="pills-contact-tab">
-
-        </div>
     </div>
+    <div class="tab-pane fade" id="pills-Approved" role="tabpanel" aria-labelledby="pills-profile-tab">
 
+    </div>
+    <div class="tab-pane fade" id="pills-Rejected" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $("#pills-approve-tab").click(function () {
+            $("#Approvedbtn").removeClass("active1");
+            $("#Approvedbtn").addClass("active1");
+        });
+      
+    </script>
+}

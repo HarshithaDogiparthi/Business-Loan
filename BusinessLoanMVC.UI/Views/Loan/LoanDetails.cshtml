@@ -31,7 +31,7 @@
     </div>
     <div class="row p-1">
         <div class="col-5"> Download Document</div>
-        <div class="col-7"> </div>
+        <div class="col-7" >@Html.ActionLink("Download","DownloadDocument","Document",new { Id = Model.doc.DocumentId },htmlAttributes:new { @class = "btn btn-primary" }) </div>
     </div>
 
 </div>
