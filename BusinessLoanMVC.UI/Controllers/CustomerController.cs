@@ -12,9 +12,11 @@ namespace BusinessLoanMVC.UI.Controllers
 
     {
         public LoanRepository loanRepository;
+        public UserRepository userRepository;
         public CustomerController()
         {
             loanRepository = new LoanRepository();
+            userRepository = new UserRepository();
         }
         // GET: Customer
         public ActionResult Index()
@@ -36,6 +38,12 @@ namespace BusinessLoanMVC.UI.Controllers
         {
             IEnumerable<Loan> loans= loanRepository.GetApprovedLoansByUser(Session["username"].ToString());
             return PartialView(loans);
+        }
+        public ActionResult Profile()
+        {
+            var x = userRepository.GetUserByName(Session["username"].ToString());
+            return View(x);
+
         }
     }
 }

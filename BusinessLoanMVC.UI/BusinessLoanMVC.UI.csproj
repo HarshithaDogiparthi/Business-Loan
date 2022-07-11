@@ -193,6 +193,8 @@
     <Content Include="Views\Customer\RejectedLoans.cshtml" />
     <Content Include="Views\Customer\ApprovedLoans.cshtml" />
     <Content Include="Views\Loan\CreateLoan.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
+    <Content Include="Views\User\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

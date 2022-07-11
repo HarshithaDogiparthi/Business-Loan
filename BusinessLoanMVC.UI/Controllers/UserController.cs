@@ -89,7 +89,18 @@ namespace BusinessLoanMVC.UI.Controllers
             userRepository.EditUser(user);
             return RedirectToAction("ViewAllUsers");
         }
+        [HttpGet]
+        public PartialViewResult EditProfile(string userName)
+        {
+            var x = userRepository.GetUserByName(userName);
+            return PartialView(x);
+        }
+        [HttpPost]
+        public ActionResult EditProfile(User user)
+        {
+            userRepository.EditUser(user);
+            return RedirectToAction("Profile","Customer");
+        }
 
-       
     }
 }

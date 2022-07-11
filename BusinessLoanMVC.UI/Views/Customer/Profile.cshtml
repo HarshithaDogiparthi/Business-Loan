@@ -1,0 +1,105 @@
+﻿@model BusinessLoanMVC.DataService.User
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AadhaarNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AadhaarNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PanNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PanNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <div class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#myModal">
+        @Ajax.ActionLink("Edit", "EditProfile", "User", new { userName = Model.Username },
+                        new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divEditUser", InsertionMode = InsertionMode.Replace },
+                        htmlAttributes: new { @class = "" })
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Edit User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="divEditUser"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
