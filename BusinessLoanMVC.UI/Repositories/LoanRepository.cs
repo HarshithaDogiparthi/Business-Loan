@@ -10,6 +10,7 @@ namespace BusinessLoanMVC.UI.Repositories
     public class LoanRepository
     {
         public BusinessLoanContext context;
+
         public LoanRepository()
         {
             context = new BusinessLoanContext();
@@ -22,7 +23,7 @@ namespace BusinessLoanMVC.UI.Repositories
         }
         public void EditLoan(Loan loan)
         {
-            context.Entry<Loan>(loan).State = System.Data.Entity.EntityState.Modified;
+            context.Entry<Loan>(loan).State = EntityState.Modified;
             context.SaveChanges();
         }
         public void DeleteLoan(Guid loanId)
@@ -37,6 +38,7 @@ namespace BusinessLoanMVC.UI.Repositories
             Loan loan = context.Loans.Find(loanId);
             return loan;
         }
+        
         public IEnumerable<Loan> GetLoanByUser(String username)
         {
             return context.Loans.Where(loan => loan.Username == username);

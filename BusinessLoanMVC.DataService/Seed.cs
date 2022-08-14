@@ -12,7 +12,10 @@ namespace BusinessLoanMVC.DataService
     {
         public BusinessLoanContext _context;
 
-        private string BasePath = "C:/Users/BHUMI/Documents/GitHub1/BusinessLoanMVC/BusinessLoanMVC.DataService/Data/";
+        //private string BasePath = "C:/Users/BHUMI/Documents/GitHub1/BusinessLoanMVC/BusinessLoanMVC.DataService/Data/";
+        //private string BasePath = "C:/Users/mohan/OneDrive/Documents/GitHub/BusinessLoanMVC/BusinessLoanMVC.UI";
+
+        private string BasePath = "E:/BusinessLoanMVC/BusinessLoanMVC.DataService/Data/";
         public Seed(BusinessLoanContext context)
         {
             _context = context;

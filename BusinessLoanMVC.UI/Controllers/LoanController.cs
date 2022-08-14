@@ -64,5 +64,27 @@ namespace BusinessLoanMVC.UI.Controllers
             obj.doc = doc;
             return PartialView(obj);
         }
+       
+        [HttpGet]
+        public PartialViewResult EditLoan(Guid loanId)
+        {
+           //var l = loanRepository.GetLoanByUser(Session["username"].ToString());
+            Loan loan = loanRepository.GetLoanById(loanId);
+            //var x=;
+            //foreach(Loan item in loan)
+            //{
+                if (loan.LoanStatus.Equals("Pending"))
+                    return PartialView(loan);
+
+            //}
+            return PartialView();
+        }
+        
+        [HttpPost]
+        public ActionResult EditLoan(Loan loan)
+        {
+            loanRepository.EditLoan(loan);
+            return RedirectToAction("ViewLoans", "Customer");
+        }
     }
 }
